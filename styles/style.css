@@ -23,7 +23,8 @@
   line-height: 24.4px;
 }
 
-.link-active {
+.link-active,
+.block-link {
   text-decoration: none;
 }
 
@@ -31,11 +32,38 @@
   border-bottom: 0;
 }
 
-.overlay {
+.overlay-container {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.overlay-background-image,
+.overlay-dimm {
   position: absolute;
   inset: 0;
-  color: var(--text-dark);
+}
+
+.overlay-background-image {
+  z-index: 1;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay-dimm {
+  z-index: 2;
   background-color: var(--overlay-background);
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 3;
+  flex-grow: 1;
+  color: var(--text-dark);
 }
 
 .text-uppercase {
@@ -68,8 +96,7 @@
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
   place-items: center stretch;
-  height: 293px;
-  padding: 50px 50px 54px 50px;
+  padding: 91px 50px 97px 50px;
   font-size: var(--nav-font-size);
 }
 
@@ -77,6 +104,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: stretch;
   width: 392px;
   list-style: circle;
 }
@@ -107,8 +135,6 @@
 }
 
 .main__cover {
-  position: relative;
-  height: 757px;
   background: #361e4b url(../images/cover.jpg) no-repeat center;
   background-size: cover;
   background-origin: border-box;
@@ -122,10 +148,11 @@
   text-decoration: none;
 }
 
-.main__cover-header {
+.main__cover-content {
   display: flex;
   flex-flow: column nowrap;
   place-content: stretch space-between;
+  gap: 104px;
   padding: 165px 50px 50px 50px;
 }
 
@@ -134,11 +161,11 @@
   flex-flow: column nowrap;
   place-content: center stretch;
   font-size: var(--cover-title-size);
-  line-height: 115%;
+  line-height: 1.15;
 }
 
-.main__cover-title > span + span {
-  margin-top: 20px;
+.main__cover-title--padded {
+  line-height: 1.56;
 }
 
 .main__cover-description {
@@ -149,7 +176,6 @@
 }
 
 .main__cover-subtitle {
-  font-weight: normal;
   font-size: var(--subtitle-font-size);
   line-height: 28px;
   letter-spacing: 0;
@@ -162,34 +188,43 @@
 }
 
 .main__lots-title {
-  font-size: var(--section-title-size);
   margin: 0 0 27px 40px;
+  font-size: var(--section-title-size);
 }
 
 .main__lots-gallery {
   display: flex;
   flex-flow: row wrap;
+  place-items: stretch;
   place-content: stretch start;
   gap: 25px;
-  list-style: none;
   font-size: var(--description-font-size);
+  list-style: none;
 }
 
 .main__lots-item-card {
-  position: relative;
-  display: block;
   width: 334px;
   min-height: 596px;
   list-style: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-origin: border-box;
 }
 
-.main__lots-item-image {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  display: block;
-  height: 100%;
-  object-fit: cover;
+.main__lots-item-card--lot-1 {
+  background-color: #16221f;
+  background-image: url(../images/card-lot-01.jpg);
+}
+
+.main__lots-item-card--lot-2 {
+  background-color: #280b10;
+  background-image: url(../images/card-lot-02.jpg);
+}
+
+.main__lots-item-card--lot-3 {
+  background-color: #533d00;
+  background-image: url(../images/card-lot-03.jpg);
 }
 
 .main__lots-item-information {
@@ -201,11 +236,13 @@
 
 .main__lots-item-title {
   font-size: var(--subtitle-font-size);
-  line-height: 120%;
+  line-height: 1.2em;
+  text-decoration: underline;
 }
 
 .main__lots-item-description {
   font-size: var(--description-font-size);
+  line-height: 1.2em;
 }
 
 .main__lots-browse-link {
@@ -220,7 +257,7 @@
   grid-template-columns: 334px auto;
   grid-template-rows: 240px auto;
   gap: 8px 25px;
-  margin-top: 105px;
+  margin-top: 107px;
   padding: 24px;
 }
 
@@ -240,10 +277,10 @@
 }
 
 .main__about-title {
-  font-size: var(--section-title-size);
   grid-column: 2;
   align-self: center;
   margin-top: 8px;
+  font-size: var(--section-title-size);
 }
 
 .main__about-description {
@@ -262,7 +299,7 @@
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
   align-items: start;
-  height: 180px;
+  min-height: 180px;
   margin-top: 156px;
   padding: 0 50px;
   font-size: var(--nav-font-size);
@@ -285,11 +322,17 @@
   display: flex;
   flex-flow: row nowrap;
   grid-column: 3;
-  justify-self: end;
+  justify-content: end;
   gap: 48px;
+  list-style-type: none;
+}
+
+.footer__socials > li {
+  flex: 0 0 48px;
 }
 
 .footer__social-link {
   width: 48px;
   height: 48px;
+  text-decoration: none;
 }
