@@ -40,21 +40,9 @@
   align-items: stretch;
 }
 
-.overlay-background-image,
 .overlay-dimm {
   position: absolute;
   inset: 0;
-}
-
-.overlay-background-image {
-  z-index: 1;
-  display: block;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.overlay-dimm {
   z-index: 2;
   background-color: var(--overlay-background);
 }
@@ -212,17 +200,17 @@
   background-origin: border-box;
 }
 
-.main__lots-item-card--lot-1 {
+.main__lots-item-card--lot-movie {
   background-color: #16221f;
   background-image: url(../images/card-lot-01.jpg);
 }
 
-.main__lots-item-card--lot-2 {
+.main__lots-item-card--lot-book {
   background-color: #280b10;
   background-image: url(../images/card-lot-02.jpg);
 }
 
-.main__lots-item-card--lot-3 {
+.main__lots-item-card--lot-art {
   background-color: #533d00;
   background-image: url(../images/card-lot-03.jpg);
 }
